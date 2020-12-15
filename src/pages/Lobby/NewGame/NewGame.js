@@ -19,7 +19,7 @@ export default function NewGame() {
         <Typography color="textSecondary">game code</Typography>
         <Typography variant="h1" className="highlight">
           {/* let's display the game id */}
-          {id || "----"}
+          {id || idError || idLoading || "----"}
         </Typography>
         <br />
         {/* let's make our button create a new game*/}
