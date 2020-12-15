@@ -6,7 +6,7 @@ import { selectGame } from "../../../store/gameSlice";
 
 export default function NewGame() {
   // let's connect Redux to our Component
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   const { id, idError, idLoading } = useSelector(selectGame);
 
   return (
@@ -19,7 +19,7 @@ export default function NewGame() {
         <Typography color="textSecondary">game code</Typography>
         <Typography variant="h1" className="highlight">
           {/* let's display the game id */}
-          {id || idError || idLoading || "----"}
+          {id || "----"}
         </Typography>
         <br />
         {/* let's make our button create a new game*/}
