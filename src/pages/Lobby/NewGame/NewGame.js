@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Grid, Typography } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
+import { selectGame } from "../../../store/gameSlice";
 //let's import what we need
 
 export default function NewGame() {
