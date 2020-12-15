@@ -45,7 +45,7 @@ export const createGame = () => {
       // let's call our insert game netlify function
       const res = await fetch('/.netlify/functions/insertGame/${gameId}', {
         method: "POST",
-        body: JSON.stringify({ state: "initialized"}),
+        body: JSON.stringify({ state: "initialized" }),
       });
       if (!res.ok){
         throw Error(res.statusText);
@@ -54,11 +54,11 @@ export const createGame = () => {
       // let's set the game id
       const resJson = await res.json();
       dispatch(setId(resJson.documentId));
-
     } catch (e) {
       // let's set the id error if there is one
       dispatch(setIdError(e.message));
     }
+    
     // let's set the id state to not loading
     dispatch(setIdLoading(false));
   };

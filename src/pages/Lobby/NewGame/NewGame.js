@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 export default function NewGame() {
   // let's connect Redux to our Component
   const dispatch = useDispatch();
-  const {id, idError, idLoading } = useSelector(selectGame);
+  const { id, idError, idLoading } = useSelector(selectGame);
 
   return (
     <Grid container direction="row" justify="center" alignItems="center">
