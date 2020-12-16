@@ -1,9 +1,10 @@
-const { createClient } = require("@astrajs/collections");
+const { getGamesCollection } = require("./utils/astraClient");
 
 exports.handler = async (event, context) => {
   let gameId;
   let gamePayload;
   try {
+
     // let's set the game id
     gameId = event.path.split("insertGame/")[1];
     // let's parse the incoming payload
@@ -16,20 +17,8 @@ exports.handler = async (event, context) => {
     };
   }
 
-  // let's connect to Astra
-  const astraClient = await createClient({
-    // let's set our Astra connection configuration
-    astraDatabaseId: process.env.ASTRA_DB_ID,
-    astraDatabaseRegion: process.env.ASTRA_DB_REGION,
-    username: process.env.ASTRA_DB_USERNAME,
-    password: process.env.ASTRA_DB_PASSWORD,
-  });
+  const gamesCollection = await getGamesCollection();
 
-  const gamesCollection = astraClient
-    .namespace(process.env.ASTRA_DB_KEYSPACE)
-    .collection(process.env.GAMES_COLLECTION);
-
-  // let's provision a new game
   try {
     // let's create a new game with the gamesCollection
     const res = await gamesCollection.create(gameId, gamePayload);
