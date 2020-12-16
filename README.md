@@ -1,106 +1,94 @@
-# 🚀 JamStack + 🧑‍🚀 React + 🧑‍💻 Workshop
-
-[![License Apache2](https://img.shields.io/hexpm/l/plug.svg)](http://www.apache.org/licenses/LICENSE-2.0)
-[![Discord](https://img.shields.io/discord/685554030159593522)](https://discord.com/widget?id=685554030159593522&theme=dark)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/c5c7fb4d-1cf5-4b2c-a9dd-8688fb2e2180/deploy-status)](https://app.netlify.com/sites/pedantic-morse-7abb21/deploys)
 
-Welcome to **BattleStax**, an online party game that you can enjoy with your friends. BattleStax is implemented as a [JAMStack](https://jamstack.org/) app that uses [Stargate](https://stargate.io), [Netlify](https://www.netlify.com/jamstack/), [Astra](https://dtsx.io/workshop), and [GitHub](https://github.com/) to demonstrate how to build and deploy an application using modern, scalable architectures. 
+# BattleStax 
 
-In this 3 hour workshop you will create your own **BattleStax** game using [React](https://reactjs.org/) and [Redux](https://redux.js.org/) implemented with a CI/CD pipeline, global CDN network, and [Apache Cassandra](https://cassandra.apache.org/) all using **FREE** tech.
+BattleStax is a stateful JAMStack game that is wholesome fun for the entire crew.
 
-![log](./tutorial/battlestax.png)
+[![Actions Status](https://github.com/DataStax-Academy/battlestax/workflows/BattleStax%20Tests/badge.svg)](https://github.com/DataStax-Academy/battlestax/actions) 
 
-## ℹ️ Housekeeping
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e265340f-c6a6-4d7b-b24c-438b87c67876/deploy-status)](https://app.netlify.com/sites/battlestax-tutorial/deploys)
 
-<details><summary>Click to view the housekeeping items (<i><!--Youtube stream, -->Discord Chat,  Mentimeter quizz, the crew</i>)</summary>
-<p>
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/DataStax-Academy/battlestax)
 
-It doesn't matter if you join our workshop live or you prefer to do at your own pace, we have you covered. In this repository, you'll find everything you need for this workshop.
+## Project Structure
 
-<!-- 
-### 🎥 Live and questions with Youtube**
+BattleStax's folder structure is (mostly) generated from [Create React App](https://github.com/facebook/create-react-app). We then add a Netlify Functions and Github Actions.
 
-The workshop is live Streamed on youtube, twitch and linkedin. After the session the recordings will be available on our [`DataStax Developers YouTube channel`](https://www.youtube.com/channel/UCAIQY251avaMv7bBv5PCo-A)
+- .github - [Github Actions](https://github.com/features/actions) configuration
+- .storybook - [Storybook Documentation](https://storybook.js.org/) Storybook configuration
+- functions - [Netlify Functions](https://www.netlify.com/products/functions/) Lambda function definition
+- public - Static files
+- src - [create-react-app](https://github.com/facebook/create-react-app) source files
+- tutorial - tutorial content
 
-*Click The image to join the stream*
+### Prerequisites
+-  A Github account - [Github](https://github.com)
+-  A fork of the `BattleStax Tutorial` repository - [Repository](https://github.com/kidrecursive/battlestax-tutorial)
+-  NodeJS 12 - [Download](https://nodejs.org/en/download/) - Recommended alternative: Setup your local development environment with [nodeenv](#nodeenv)
+-  A Netlify account (it's free!) - [Netlify](https://www.netlify.com)
+-  An Astra account and database (it's free!) - [Astra](https://astra.datastax.com/)
 
-[![stream](./tutorial/workshop-live.png)](https://vimeo.com/datastax/review/478138764/8983f4fca5)
+### Using `nodeenv` (recommended)
 
--->
+Using [nodeenv](https://github.com/ekalinin/nodeenv) allows you to keep your NodeJS version and dependencies isolated for the project you're 
+working on. To get started using it for BattleStax, install it using [homebrew](https://formulae.brew.sh/formula/nodeenv) or `easy_install`.
+```sh
+# install using homebrew
+brew install nodeenv
 
-### 💬 Chat with Discord*
+# install using easy_install
+sudo easy_install nodeenv
+```
 
-Join our discord room [*The Fellowship of the Rings*](https://discord.com/widget?id=685554030159593522&theme=dark) to chat with the team and meet our 6k+ community there.
+Once nodeenv is installed, setup a virtualenv in the project folder, and then activate it.
 
-[![stream](./tutorial/discord.png)](https://discord.com/widget?id=685554030159593522&theme=dark)
+```sh
+# setup a nodeenv in the venv folder using NodeJS 12
+nodeenv venv --node=12.18.4
 
-### ❓ Quizz with Mentimeter
+# activate the nodeenv
+. venv/bin/activate
+```
 
-This workshop is *INTERACTIVE*. Not only you interact with the speakers through questions but there is more:
+### Working with BattleStax
 
-- We want to ask you some questions
+Create a `.env` file and fill it with values from the `.env.example` file.
 
-![stream](./tutorial/mentimeter.png)
+Make sure the package dependencies are installed
+```sh
+# install dependencies
+npm install
+```
 
-- We want you to mark when the exercise is complete 
+Then, start the app in dev mode. Changes in the `src` or `functions` directories will trigger reloads.
 
-![stream](./tutorial/mentimeter2.png)
+```sh
+# start battlestax in dev mode
+npm run dev
+```
 
-- We want you win some SWAG with some competitions and live QUIZZES
+### UI Storybook
 
-![stream](./tutorial/mentimeter3.png)
+To run storybook, make sure you have some {ComponentName}.stories.js files and then:
 
-To do so we are using [Mentimeter](https://www.mentimeter.com/). To play with us follow the instructions below. The code is **`99 02 07 7`**. You can also [open this link](https://www.menti.com/wzz24ja21f) in a new tab.
+```sh
+# start storybook
+npm run storybook
+```
 
-![stream](./tutorial/mentimeter4.png)
+### Client Testing
 
+Test your react/redux client 
+```sh
+# run the client tests
+npm test
+```
 
-### 🧑🏻‍🤝‍🧑🏽 The Crew
+### Netlify Function Testing
 
-The materials has been prepared with live with our great team
+Test your netlify functions 
 
-| ![B](./tutorial/crew/chris.png) | ![B](./tutorial/crew/david.png) | ![B](./tutorial/crew/rebecca.png) | ![B](./tutorial/crew/cedrick.png)|
-|--- | --- | --- | --- |
-| Chris Whilhite <br>[@kidrecursive](https://github.com/kidrecursive) | David Gilardi <br>[@SonicDMG](https://github.com/SonicDMG)| Rebecca Millis <br>[@beccam](https://github.com/beccam) | Cedrick Lunven<br>[@clun](https://github.com/clun)|
-
-![stream](./tutorial/line.png)
-
-<!--
-## 🚀🚀 🚀  Let's Play the Game !
-
-Brace yourselves, everybody goes to [https://battlestax-workshop.netlify.app/](https://battlestax-workshop.netlify.app/). 
-
-[![.](./tutorial/rocket-animation.gif)](https://battlestax-workshop.netlify.app/)
-
--->
-
-</p>
-</details>
-
-## 🗓️ Table of Contents
-
-*All the tutorials and readme files are on the **master**. Start there and then follow each step to get everything hooked up. Get a look at all branches [here](https://github.com/DataStax-Academy/battlestax/branches)*
-
-- **Bootstraping**
-  - 📚 [What is the JAMStack](./README_JAM.md)
-  - ⚒️ [Setup and deploy your first app](./README_step00.md) *(branch `master`)*
-- **Step 1 - Serverless**
-  - 📚 [What can Netlify do for you](./README_Netlify.md)
-  - ⚒️ [Expose your "hello world" API](./README_step01.md) (*branch: `step-1`*)
-- **Step 2 - Implement a Serverless Data API**
-  - 📚 [What are DataStax Astra and Stargate](./README_Astra_Stargate.md)
-  - ⚒️ [Implement a CRUD Api in Astra](./README_step02.md) (*branch: `step-2`*)
-- **Step 3 - Client and State Management with Redux**
-  - 📚 [What are Redux and React](./README_Redux_React.md)  
-  - ⚒️ [Create client state with Redux](./README_step03.md) (*branch: `step-3`*)
-- **Step 4 - React stuff** 
-  - ⚒️ [Bind Redux to the User Interface](./README_step04.md) (*branch: `step-4`*)
-- **What's NEXT ?** *(not the framework* 😈)
-  - 📚 [Extra Resources and certifications](./README_Resources.md)   
-  - 💚 [Share the love](https://github.com/DataStax-Academy/battlestax/blob/master/README_Resources.md#-share-the-love)
-
-*click the image to start !*
-
-[![BattleStax JAMStack Workshop](./tutorial/are-you-ready.gif)](./README_JAM.md)
-
-**🏠 [Table of Contents](./README.md#%EF%B8%8F-table-of-contents)** | ***next=>** 📚 [What is the JAMStack](./README_JAM.md)*
+```sh
+# run the function tests
+npm run test:functions
+```
