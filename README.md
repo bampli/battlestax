@@ -2,6 +2,8 @@
 [![Actions Status](https://github.com/bampli/battlestax/workflows/BattleStax%20Tests/badge.svg)](https://github.com/bampli/battlestax/actions) 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/bampli/battlestax)
 
+[https://pedantic-morse-7abb21.netlify.app](https://pedantic-morse-7abb21.netlify.app)
+
 # BattleStax 
 
 BattleStax is a stateful JAMStack game that is wholesome fun for the entire crew.
