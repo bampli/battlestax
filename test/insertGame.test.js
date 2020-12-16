@@ -10,12 +10,8 @@ it("should create a game document", async () => {
     body: '{"user":"me"}',
   });
   expect(response.statusCode).toBe(200);
-<<<<<<< HEAD
-}, 10000);
-=======
   await deleteGame(gameId);
 });
->>>>>>> full-game
 
 it("shouldn't create a game document without a game id", async () => {
   const response = await insertGame.handler({ path: "insertGame" });
