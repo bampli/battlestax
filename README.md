@@ -6,4 +6,4 @@
 
 # JAM Stack Test
 
-The Netlify app (pedantic-morse-7abb21) was deleted since my functions invocation quota was about to exceed. Sorry about that.
+The Netlify app was deleted since my functions invocation quota was about to exceed. Sorry about that.
